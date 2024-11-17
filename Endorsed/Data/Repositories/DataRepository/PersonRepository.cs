@@ -7,6 +7,7 @@ using Endorsed.Data.Repositories.HelperClasses;
 using Microsoft.Extensions.Configuration;
 using Endorsed.Data.DBContext;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Endorsed.Data.Repositories.DataRepository
 {
@@ -66,7 +67,10 @@ namespace Endorsed.Data.Repositories.DataRepository
 
        public ActionResult<Person> GetBy(int ID)
         {
-            var res = _cont.People.Find(ID);
+            var res = _cont.People
+                .Include(p => p.AddressLinks)
+                .Include(p => p.QualificationLinks)
+                .FirstOrDefault(p => p.PersonID == ID);
             return  res;
         }
 

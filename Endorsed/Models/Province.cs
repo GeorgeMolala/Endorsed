@@ -11,6 +11,7 @@ namespace Endorsed.Models
         [Key]
         public int ProvinceID { get; set; }
 
+
         [StringLength(40)]
         [Required]
         public string ProvinceName { get; set; }

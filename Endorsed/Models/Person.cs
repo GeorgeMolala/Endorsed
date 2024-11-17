@@ -11,20 +11,25 @@ namespace Endorsed.Models
         [Key]
         public int PersonID { get; set; }
 
+
         [StringLength(20)]
         [Required]
         public string FirstName { get; set; }
 
+
         [StringLength(40)]
         public string MiddleName { get; set; }
+
 
         [StringLength(20)]
         [Required]
         public string Surname { get; set; }
 
+
         [Range(16,120)]
         [Required]
         public int Age { get; set; }
+
 
         [Required]
         [EmailAddress]

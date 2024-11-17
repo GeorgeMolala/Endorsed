@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Endorsed
 {
@@ -47,9 +48,14 @@ namespace Endorsed
 
            services.AddDbContext<EndorsedContextDb>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-           // services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
+            // services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
 
-            services.AddControllers();
+            services.AddControllers()
+                 .AddJsonOptions(options =>
+                 {
+                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                     options.JsonSerializerOptions.MaxDepth = 64; // Optional: Increase depth if needed
+                 });
             services.AddServices();
             services.AddSwaggerGen(c =>
             {

@@ -11,9 +11,12 @@ namespace Endorsed.Models
         [Key]
         public int QualificationID { get; set; }
 
+
+
         [StringLength(25)]
         [Required]
         public string QualififcationName { get; set; }
+
 
         [StringLength(15)]
         [Required]
